@@ -16,40 +16,11 @@ export class App extends Component {
     this.setState(prevState => ({ [options]: prevState[options] + 1 }));
   };
 
-  countTotalFeedback = () =>
-    Object.values(this.state).reduce((value, acc) => acc + value, 0);
+  countTotalFeedback = () => {};
 
-  countPositiveFeedbackPercentage = () =>
-    Math.round((this.state.good / this.countTotalFeedback()) * 100) || 0;
+  countPositiveFeedbackPercentage = () => {};
 
   render() {
-    const { good, neutral, bad } = this.state;
-    const options = Object.keys(this.state);
-    const result = this.countTotalFeedback();
-
-    return (
-      <div className={css.card}>
-        <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={options}
-            onLeaveFeedback={this.onLeaveFeedback}
-          />
-        </Section>
-
-        {result ? (
-          <Section title="Statistics">
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
-            />
-          </Section>
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
-      </div>
-    );
+    return <div className={css.card}></div>;
   }
 }
