@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import FeedbackOptions from 'components/FeedbackOptions';
-import Statistics from 'components/Statistics';
-import Section from 'components/Section';
-import Notification from 'components/Notification';
+// import FeedbackOptions from 'components/FeedbackOptions';
+// import Statistics from 'components/Statistics';
+// import Section from 'components/Section';
+// import Notification from 'components/Notification';
 import css from '../App/App.module.css';
 
 export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+  state = {};
 
   onLeaveFeedback = options => {
     this.setState(prevState => ({ [options]: prevState[options] + 1 }));
