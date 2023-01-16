@@ -41,5 +41,6 @@ export const Button = styled.button`
   &:focus,
   :hover {
     background-color: #23fe06e0;
+    transform: scale(1.15);
   }
 `;
