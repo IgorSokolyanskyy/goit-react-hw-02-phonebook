@@ -1,22 +1,72 @@
 import React, { Component } from 'react';
-// import FeedbackOptions from 'components/FeedbackOptions';
-// import Statistics from 'components/Statistics';
-// import Section from 'components/Section';
-// import Notification from 'components/Notification';
-import css from '../App/App.module.css';
+import ContactForm from '../ContactForm';
+import ContactList from '../ContactList';
+import Filter from '../Filter';
+import contacts from 'data/contacts.json';
+import { nanoid } from 'nanoid';
+import { Container, Title, Subtitle, P } from './App.styled';
 
 export class App extends Component {
-  state = {};
-
-  onLeaveFeedback = options => {
-    this.setState(prevState => ({ [options]: prevState[options] + 1 }));
+  state = {
+    contacts,
+    filter: '',
   };
 
-  countTotalFeedback = () => {};
+  addContact = ({ name, number }) => {
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
 
-  countPositiveFeedbackPercentage = () => {};
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
+  };
+
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  deleteContact = contactId => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
 
   render() {
-    return <div className={css.card}></div>;
+    const { contacts, filter } = this.state;
+    const visibelContacts = this.getVisibleContacts();
+
+    return (
+      <Container>
+        <Title>Phonebook</Title>
+
+        <ContactForm onSubmit={this.addContact} contacts={contacts} />
+
+        <Subtitle>Contacts</Subtitle>
+
+        {contacts.length > 1 && (
+          <Filter value={filter} onChange={this.changeFilter} />
+        )}
+        {contacts.length > 0 ? (
+          <ContactList
+            contacts={visibelContacts}
+            onDeleteContact={this.deleteContact}
+          />
+        ) : (
+          <P>Your phonebook is empty. Please add contact.</P>
+        )}
+      </Container>
+    );
   }
 }
