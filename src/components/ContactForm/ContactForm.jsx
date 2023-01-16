@@ -1,11 +1,14 @@
+import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
-// import * as yup from 'yup';
 import { Input, Button, FormList } from './ContactForm.styled';
 import { nanoid } from 'nanoid';
+// import * as yup from 'yup';
 
 // const schema = yup.object().shape({
-//   name: yup.string().required(),
-//   numder: yup.string().required(),
+//   name: yup.string().required('Name may contain only letters'),
+//   numder: yup
+//     .string()
+//     .required('Phone number must be digits and can contain spaces'),
 // });
 
 const nameInputId = nanoid();
@@ -16,7 +19,7 @@ const initialValues = {
   number: '',
 };
 
-const FormikForm = ({ onSubmit, contacts }) => {
+export default function ContactForm({ onSubmit, contacts }) {
   const handleSubmit = (values, { resetForm }) => {
     const checkedName = contacts.map(contact => contact.name);
 
@@ -68,9 +71,12 @@ const FormikForm = ({ onSubmit, contacts }) => {
       </FormList>
     </Formik>
   );
-};
+}
 
-export default FormikForm;
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
+};
 
 // import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
