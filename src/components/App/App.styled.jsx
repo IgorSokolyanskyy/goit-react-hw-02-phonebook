@@ -13,7 +13,6 @@ export const Container = styled.div`
 
   color: rgb(244, 244, 244);
   font-size: 20px;
-  /* margin-bottom: 12px; */
 `;
 
 export const Title = styled.h1`

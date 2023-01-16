@@ -30,7 +30,6 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   margin: auto;
-  /* padding: 0; */
   outline: none;
   border: none;
   width: 100px;
