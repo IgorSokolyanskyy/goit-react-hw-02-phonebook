@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { Input, Button, FormList } from './ContactForm.styled';
 import { nanoid } from 'nanoid';
 // import * as yup from 'yup';
