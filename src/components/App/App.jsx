@@ -66,7 +66,7 @@ export class App extends Component {
       <Container>
         <Title>Phonebook</Title>
 
-        <ContactForm onSubmit={this.addContact} contacts={contacts} />
+        <ContactForm onSubmit={this.addContact} />
 
         <Subtitle>Contacts</Subtitle>
 
